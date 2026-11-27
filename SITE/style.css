@@ -1,0 +1,124 @@
+header {
+    background-color: #204972;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: bold;
+    font-size: 20px;
+}
+
+.logo-img {
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+nav {
+    display: inline-block;
+
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    margin: 5px 20px;
+    font-size: 18px;
+}
+
+a:hover {
+    color: #ff6600;
+    transition: 1s;
+}
+
+.content {
+    text-align: center;
+    padding: 100px;
+    background-color: #50aaff;
+    margin-top: 20px;
+    border-radius: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 36px;
+}
+
+p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    color: #2ab492;
+    transition: 1s;
+}
+
+.product-card {
+    background-color: #00aaff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px;
+    align-self: auto;
+
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.produtos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+h2 {
+    color: #fff;
+    font-size: 24px;
+}
+
+body {
+    background-color: #205099;
+}
+
+.menu {
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+body {
+    background-image: url(https://img.magnific.com/vetores-gratis/estilo-de-papel-linhas-dinamicas-fundo_23-2149008629.jpg?semt=ais_hybrid&w=740&q=80);
+    background-size: cover;
+}

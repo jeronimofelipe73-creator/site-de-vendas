@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Completo</title>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .grupo {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .linha-opcao {
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        small {
+            color: #777;
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            opacity: 0.93;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .aviso {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .sucesso {
+            background: #e6fffa;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .erro {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>📋 Formulário de Contato Completo</h2>
+
+        <form id="formCompleto" enctype="multipart/form-data">
+
+            <!-- DADOS PESSOAIS -->
+            <div class="grupo">
+                <label for="nome">Nome Completo *</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            </div>
+            <div class="grupo">
+                <label for="nome">DIGITE A SUA TURMA</label>
+                <input type="text" id="turma" name="turma" placeholder="turma" required>
+            </div>
+
+            <hr>
+
+            <div class="grupo">
+                <label>PRODUTOS (pode marcar mais de um)</label>
+                <div class="linha-opcao">
+                    <input type="checkbox" id="p1" name="fonecomfio" value="fone com fio">
+                    <label for="p1" style="width:auto; margin:0;">Fone com fio</label>
+                </div>
+                <div class="linha-opcao">
+                    <input type="checkbox" id="p2" name="calculadora" value="calculadora">
+                    <label for="p2" style="width:auto; margin:0;">Calculadora</label>
+                </div>
+                <div class="linha-opcao">
+                    <input type="checkbox" id="p3" name="fonebluetooth" value="Fone bluethooth">
+                    <label for="p3" style="width:auto; margin:0;">Fone bluethooth</label>
+                </div>
+                <div class="linha-opcao">
+                    <input type="checkbox" id="p4" name="mousesemfio" value="mouse sem fio">
+                    <label for="p4" style="width:auto; margin:0;">Mouse sem fio</label>
+                </div>
+            </div>
+
+
+
+            <button type="submit">📤 ENVIAR</button>
+
+            <div id="caixaAviso" class="aviso"></div>
+        </form>
+    </div>
+
+    <script>
+        // ==============================================
+        // 👇 PREENCHA AQUI SEUS DADOS DO EMAILJS!
+        // ==============================================
+        const CHAVE_PUBLICA = "zcNdmKZ3Hfb9uiGlU";
+        const SERVICO_ID = "service_sx4dpp2";
+        const MODELO_ID = "template_slfn40l";
+
+        // Inicializa EmailJS
+        emailjs.init(CHAVE_PUBLICA);
+
+        const form = document.getElementById('formCompleto');
+        const caixaAviso = document.getElementById('caixaAviso');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            caixaAviso.style.display = 'none';
+
+            emailjs.sendForm(SERVICO_ID, MODELO_ID, this)
+                .then(function () {
+                    caixaAviso.textContent = "✅ Formulário enviado com sucesso! Obrigado por entrar em contato.";
+                    caixaAviso.className = "aviso sucesso";
+                    caixaAviso.style.display = "block";
+                    form.reset();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, function (erro) {
+                    caixaAviso.textContent = "❌ Erro ao enviar. Tente novamente mais tarde. Detalhe: " + erro.text;
+                    caixaAviso.className = "aviso erro";
+                    caixaAviso.style.display = "block";
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+        });
+
+    </script>
+
+</body>
+
+</html>
